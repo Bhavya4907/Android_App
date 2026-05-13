@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "288232036542",
+    "project_id": "instiapp-db011",
+    "storage_bucket": "instiapp-db011.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:288232036542:android:2be20377f10dab1df326ef",
+        "android_client_info": {
+          "package_name": "com.example.campus_hub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRXvbQQmIPlAbIEWKeke2aXxWBIPOKN2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
