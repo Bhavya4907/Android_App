@@ -94,11 +94,11 @@ class ProfileScreen extends StatelessWidget {
                             ),
 
                             child: Text(
-  (data["adminRequested"] ?? false)
-      ? "Admin Requested"
-      : "Regular User",
-  style: const TextStyle(fontSize: 14),
-),
+                              (data["adminRequested"] ?? false)
+                                  ? "Admin Requested"
+                                  : "Regular User",
+                              style: const TextStyle(fontSize: 14),
+                            ),
                           ),
                         ],
                       ),
@@ -143,84 +143,39 @@ class ProfileScreen extends StatelessWidget {
                     const SizedBox(height: 30),
 
                     SizedBox(
+                      width: double.infinity,
 
-  width:
-      double.infinity,
+                      height: 55,
 
-  height: 55,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
 
-  child:
+                        onPressed: (data["adminRequested"] ?? false)
+                            ? null
+                            : () async {
+                                await FirebaseFirestore.instance
+                                    .collection("users")
+                                    .doc(uid)
+                                    .update({"adminRequested": true});
 
-      ElevatedButton(
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("Admin request sent"),
+                                  ),
+                                );
+                              },
 
-    style:
-
-        ElevatedButton.styleFrom(
-
-      shape:
-
-          RoundedRectangleBorder(
-
-        borderRadius:
-
-            BorderRadius.circular(
-          20,
-        ),
-      ),
-    ),
-
-    onPressed:
-
-        (data["adminRequested"] ?? false)
-
-            ? null
-
-            : () async {
-
-                await FirebaseFirestore
-                    .instance
-                    .collection(
-                      "users",
-                    )
-                    .doc(
-                      uid,
-                    )
-                    .update({
-
-                  "adminRequested":
-                      true,
-
-                });
-
-                ScaffoldMessenger
-                    .of(
-                  context,
-                )
-                    .showSnackBar(
-
-                  const SnackBar(
-
-                    content:
-                        Text(
-                      "Admin request sent",
+                        child: Text(
+                          (data["adminRequested"] ?? false)
+                              ? "Request Pending"
+                              : "Request Admin",
+                        ),
+                      ),
                     ),
-
-                  ),
-                );
-
-              },
-
-    child: Text(
-
-      (data["adminRequested"] ?? false)
-
-          ? "Request Pending"
-
-          : "Request Admin",
-
-    ),
-  ),
-),
                   ],
                 ),
               ),
